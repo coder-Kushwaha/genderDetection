@@ -1,7 +1,12 @@
+# before running this project 
+# install numpy then opencv
+# to close output window press q  OR delete the terminal
+
 import cv2
 
+#make sure pathing is correct acc to ur directory
 
-face_pbtxt = "model/opencv_face_detector.pbtxt"
+face_pbtxt = "model/opencv_face_detector.pbtxt" 
 face_pb = "model/opencv_face_detector_uint8.pb"
 age_prototxt="model/age_deploy.prototxt"
 age_model="model/age_net.caffemodel"
@@ -36,8 +41,6 @@ def faceBox(faceNet,frame):
     return frame,bbox
 
 
-
-
 cap = cv2.VideoCapture(0)
 
 
@@ -50,7 +53,6 @@ while True:
       blob = cv2.dnn.blobFromImage(face,1.0,(227,227),MODEL_MEAN_VALUES2, swapRB=False)
       genNet.setInput(blob)
       gender_Prediction =  genNet.forward()
-      print(gender_classifications[gender_Prediction[0].argmax()])
       gender = gender_classifications[gender_Prediction[0].argmax()]
 
 
